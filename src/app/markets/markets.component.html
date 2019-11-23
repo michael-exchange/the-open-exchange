@@ -1,1 +1,26 @@
-<p>markets works!</p>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Bid</th>
+        <th scope="col">Ask</th>
+        <th scope="col">Created</th>
+        <th scope="col">Ending</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let market of markets" routerLink="/markets/{{market.security_id}}">
+        <th scope="row">{{market.market_name}}</th>
+        <td>{{market.price | currency}}</td>
+        <td>{{market.bid | currency}}</td>
+        <td>{{market.ask | currency}}</td>
+        <td>{{market.create_time | date: 'short'}}</td>
+        <td>{{market.end_time | date: 'short'}}</td>
+        <td>{{market.market_descriptor}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

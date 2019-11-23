@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MarketsService } from '../markets.service';
+import { Market } from '../market';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
+  newMarket: Market = new Market;
 
-  constructor() { }
+  constructor(private market:MarketsService, private router:Router) { }
 
   ngOnInit() {
+  }
+
+  createMarket() {
+    this.market.createMarket(this.newMarket).subscribe(() => this.router.navigateByUrl('/markets'))
   }
 
 }

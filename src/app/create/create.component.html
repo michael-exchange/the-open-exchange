@@ -1,1 +1,14 @@
-<p>create works!</p>
+<div class="container">
+  <form>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Name" [(ngModel)]="newMarket.name" name="name">
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" placeholder="Description" [(ngModel)]="newMarket.description" name="description"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="datetime-local" class="form-control" placeholder="End Date" [(ngModel)]="newMarket.end" name="end">
+    </div>
+    <button type="submit" class="btn btn-outline-dark" (click)="createMarket()">Create Market</button>
+  </form>
+</div>
