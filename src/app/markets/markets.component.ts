@@ -10,7 +10,7 @@ import { Market } from '../market';
 export class MarketsComponent implements OnInit {
   markets:Market[]; 
 
-  constructor(private market:MarketsService) { }
+  constructor(private market: MarketsService) { }
 
   ngOnInit() {
     this.market.getAllMarkets().subscribe(result => this.markets = result);

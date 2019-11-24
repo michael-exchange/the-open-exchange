@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Market } from './market';
+import { Order } from './order';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,13 @@ export class MarketsService {
 
   createMarket(market:Market): Observable<void> {
     return this.http.post<void>(`${this.url}/markets`, market);
+  }
+
+  bid(order:Order): Observable<void> {
+    return this.http.post<void>(`${this.url}/bids`, order);
+  }
+
+  ask(order:Order): Observable<void> {
+    return this.http.post<void>(`${this.url}/asks`, order);
   }
 }

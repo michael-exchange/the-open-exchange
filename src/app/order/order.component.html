@@ -4,19 +4,19 @@
     <h5 class="card-subtitle mb-2 text-muted">{{currentMarket.price | currency}}</h5>
     <p class="card-text">Bid: {{currentMarket.bid | currency}}</p>
     <p class="card-text">Ask: {{currentMarket.ask | currency}}</p>
-    <p class="card-text">Created: {{currentMarket.create_time}}</p>
-    <p class="card-text">Ending: {{currentMarket.end_time}}</p>
+    <p class="card-text">Created: {{currentMarket.create_time | date: 'short'}}</p>
+    <p class="card-text">Ending: {{currentMarket.end_time | date: 'short'}}</p>
     <p class="card-text">Description: {{currentMarket.market_descriptor}}</p>
   </div>
   <br>
   <h3>Place Order</h3>
   <form>
     <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
-      <label class="btn btn-outline-dark active">
-        <input type="radio" name="bid" value="true" autocomplete="off" [(ngModel)]="bidask" checked> Bid {{bidask}}
+      <label class="btn btn-outline-dark" [class.active]="bidask" active>
+        <input type="radio" name="bid" [value]="true" autocomplete="off" [(ngModel)]="bidask"> Bid
       </label>
-      <label class="btn btn-outline-dark">
-        <input type="radio" name="ask" value="false" autocomplete="off" [(ngModel)]="bidask"> Ask {{bidask}}
+      <label class="btn btn-outline-dark" [class.active]="!bidask">
+        <input type="radio" name="ask" [value]="false" autocomplete="off" [(ngModel)]="bidask"> Ask
       </label>
     </div>
     <div class="form-group">
