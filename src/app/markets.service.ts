@@ -31,4 +31,8 @@ export class MarketsService {
   ask(order:Order): Observable<void> {
     return this.http.post<void>(`${this.url}/asks`, order);
   }
+
+  deleteExposure(id:number, exposure:any): Observable<void> {
+    return this.http.put<void>(`${this.url}/markets/${id}`, exposure);
+  }
 }

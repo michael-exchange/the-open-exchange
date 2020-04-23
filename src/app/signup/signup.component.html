@@ -1,8 +1,20 @@
 <div class="container">
   <form>
+    <h3>Log in</h3>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Username" [(ngModel)]="username" name="username">
+      <input type="text" class="form-control" placeholder="Username" [(ngModel)]="user" name="user">
+      <input type="password" class="form-control" placeholder="Password" [(ngModel)]="pin" name="pin">
     </div>
-    <button type="submit" class="btn btn-outline-dark" (click)="addUser(username)">Create User</button>
+    <button type="submit" class="btn btn-outline-dark" (click)="login()">Login</button>
+  </form>
+  <br>
+  <form>
+    <h3>Sign up</h3>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Username" [(ngModel)]="user" name="user">
+      <input type="password" class="form-control" placeholder="Password" [(ngModel)]="pin" name="pin">
+    </div>
+    <p>Avoid using a real password due to security reasons</p>
+    <button type="submit" class="btn btn-outline-dark" (click)="addUser()">Create User</button>
   </form>
 </div>

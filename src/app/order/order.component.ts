@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MarketsService } from '../markets.service';
 import { Market } from '../market';
 import { Order } from '../order';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-order',
@@ -16,7 +17,8 @@ export class OrderComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private market: MarketsService
+    private market: MarketsService,
+    private userService: UsersService
   ) { }
 
   ngOnInit() {
@@ -24,6 +26,8 @@ export class OrderComponent implements OnInit {
       this.order.security_id = +params.id;
       this.getMarketData(+params.id);
     })
+    this.order.user = this.userService.getUser();
+    this.order.pin = this.userService.getPin();
   }
 
   // rewrite the getMarket() route instead of finding here
@@ -40,6 +44,11 @@ export class OrderComponent implements OnInit {
     else if (this.bidask === false) {
       this.market.ask(this.order).subscribe(() => this.getMarketData(this.order.security_id))
     }
+  }
+
+  deleteExposure(): void {
+    this.market.deleteExposure(this.order.security_id, { user_id: this.order.user, pin: this.order.pin })
+      .subscribe(() => this.getMarketData(this.order.security_id));
   }
 
 }

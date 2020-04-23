@@ -10,6 +10,7 @@ import { MarketsComponent } from './markets/markets.component';
 import { OrderComponent } from './order/order.component';
 import { CreateComponent } from './create/create.component';
 import { SignupComponent } from './signup/signup.component';
+import { SettlementComponent } from './settlement/settlement.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SignupComponent } from './signup/signup.component';
     MarketsComponent,
     OrderComponent,
     CreateComponent,
-    SignupComponent
+    SignupComponent,
+    SettlementComponent
   ],
   imports: [
     BrowserModule,
