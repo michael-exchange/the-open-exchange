@@ -25,20 +25,15 @@ export class OrderComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.order.security = +params.id;
-      this.getMarketData(+params.id);
+      this.getMarketData();
     })
     this.order.user = this.userService.getUser();
     this.order.pin = this.userService.getPin();
-    console.log(this.order);
   }
 
   // rewrite the getMarket() route instead of finding here
-  getMarketData(id: number): void {
-    this.market.getAllMarkets().subscribe(result => {
-      this.currentMarket = result.find(market => {
-        return market.security_id === id;
-      });
-    })
+  getMarketData(): void {
+    this.market.getMarket(this.order.security).subscribe(result => this.currentMarket = result);
   }
 
   addOrder(): void {
@@ -48,7 +43,7 @@ export class OrderComponent implements OnInit {
         this.message = '';
         this.order.price = null;
         this.order.volume = null;
-        this.getMarketData(this.order.security);
+        this.getMarketData();
       }
     })
     else if (this.bidask === false) {
@@ -58,7 +53,7 @@ export class OrderComponent implements OnInit {
           this.message = '';
           this.order.price = null;
           this.order.volume = null;
-          this.getMarketData(this.order.security);
+          this.getMarketData();
         }
       })
     }
@@ -68,7 +63,7 @@ export class OrderComponent implements OnInit {
     this.market.deleteExposure(this.order.security, { user: this.order.user, pin: this.order.pin })
       .subscribe(result => {
         this.message = result;
-        this.getMarketData(this.order.security)
+        this.getMarketData();
       });
   }
 

@@ -8,7 +8,7 @@ import { Market } from '../market';
   styleUrls: ['./markets.component.css']
 })
 export class MarketsComponent implements OnInit {
-  markets:Market[]; 
+  markets:Market[];
 
   constructor(private market: MarketsService) { }
 

@@ -4,7 +4,9 @@ export class Market {
   end_time: string;
   market_descriptor: string;
   market_name: string;
-  price?: number;
-  bid?: number;
-  ask?: number;
+  last_traded?: number;
+  best_bid?: number;
+  best_bid_volume?: number;
+  best_ask?: number;
+  best_ask_volume?: number;
 }

@@ -1,9 +1,11 @@
 <div class="container">
   <div class="card card-body">
     <h4 class="card-title">{{currentMarket.market_name}}</h4>
-    <h5 class="card-subtitle mb-2 text-muted">{{currentMarket.price | currency}}</h5>
-    <p class="card-text">Bid: {{currentMarket.bid | currency}}</p>
-    <p class="card-text">Ask: {{currentMarket.ask | currency}}</p>
+    <h5 class="card-subtitle mb-2 text-muted">{{currentMarket.last_traded | currency}}</h5>
+    <p *ngIf="currentMarket.best_bid" class="card-text">Bid: {{currentMarket.best_bid | currency}} ({{currentMarket.best_bid_volume}} contracts)</p>
+    <p *ngIf="!currentMarket.best_bid">Bid: none</p>
+    <p *ngIf="currentMarket.best_ask" class="card-text">Ask: {{currentMarket.best_ask | currency}} ({{currentMarket.best_ask_volume}} contracts)</p>
+    <p *ngIf="!currentMarket.best_ask">Ask: none</p>
     <p class="card-text">Created: {{currentMarket.create_time | date: 'short'}}</p>
     <p class="card-text">Ending: {{currentMarket.end_time | date: 'short'}}</p>
     <p class="card-text">Description: {{currentMarket.market_descriptor}}</p>
