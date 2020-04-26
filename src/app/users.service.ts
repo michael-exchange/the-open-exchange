@@ -35,4 +35,8 @@ export class UsersService {
   getPin(): string {
     return this.cookies.get('pin');
   }
+
+  getUserInfo(): Observable<any> {
+    return this.http.put<any>(`${this.url}/users/${this.getUser()}`, { pin: this.getPin() } );
+  }
 }
