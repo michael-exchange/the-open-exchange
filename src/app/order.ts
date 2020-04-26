@@ -1,5 +1,5 @@
 export class Order {
-  security_id: number;
+  security: number;
   user: string;
   pin: string;
   price: number;

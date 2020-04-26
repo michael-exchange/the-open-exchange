@@ -15,10 +15,15 @@ export class SignupComponent implements OnInit {
   constructor(private userService:UsersService, private router:Router) { }
 
   ngOnInit() {
+    this.user = this.userService.getUser();
+    if (this.user) this.router.navigateByUrl('/markets');
   }
 
   addUser() {
-    this.userService.createUser(this.user, this.pin).subscribe();
+    this.userService.createUser(this.user, this.pin).subscribe(() => {
+      this.userService.setCredentials(this.user, this.pin);
+      location.reload();
+    });
   }
 
   login() {
@@ -26,7 +31,7 @@ export class SignupComponent implements OnInit {
       if (!result) this.error = true;
       else {
         this.userService.setCredentials(this.user, this.pin);
-        this.router.navigateByUrl('/markets');
+        location.reload();
       }
     })
   }

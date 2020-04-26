@@ -14,6 +14,7 @@ export class OrderComponent implements OnInit {
   currentMarket: Market = new Market;
   order: Order = new Order;
   bidask: boolean = true;
+  message: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,11 +24,12 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.order.security_id = +params.id;
+      this.order.security = +params.id;
       this.getMarketData(+params.id);
     })
     this.order.user = this.userService.getUser();
     this.order.pin = this.userService.getPin();
+    console.log(this.order);
   }
 
   // rewrite the getMarket() route instead of finding here
@@ -40,15 +42,31 @@ export class OrderComponent implements OnInit {
   }
 
   addOrder(): void {
-    if (this.bidask) this.market.bid(this.order).subscribe(() => this.getMarketData(this.order.security_id))
+    if (this.bidask) this.market.bid(this.order).subscribe(result => {
+      if ((typeof result) == 'string') this.message = result;
+      else {
+        this.message = '';
+        this.getMarketData(this.order.security);
+      }
+    })
     else if (this.bidask === false) {
-      this.market.ask(this.order).subscribe(() => this.getMarketData(this.order.security_id))
+      this.market.ask(this.order).subscribe(result => {
+        if ((typeof result) == 'string') this.message = result;
+        else {
+          this.message = '';
+          this.getMarketData(this.order.security);
+        }
+      })
     }
   }
 
   deleteExposure(): void {
-    this.market.deleteExposure(this.order.security_id, { user_id: this.order.user, pin: this.order.pin })
-      .subscribe(() => this.getMarketData(this.order.security_id));
+    console.log(this.order.security);
+    this.market.deleteExposure(this.order.security, { user: this.order.user, pin: this.order.pin })
+      .subscribe(result => {
+        this.message = result;
+        this.getMarketData(this.order.security)
+      });
   }
 
 }

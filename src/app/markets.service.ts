@@ -24,15 +24,15 @@ export class MarketsService {
     return this.http.post<void>(`${this.url}/markets`, market);
   }
 
-  bid(order:Order): Observable<void> {
-    return this.http.post<void>(`${this.url}/bids`, order);
+  bid(order:Order): Observable<any> {
+    return this.http.post<any>(`${this.url}/bids`, order);
   }
 
-  ask(order:Order): Observable<void> {
-    return this.http.post<void>(`${this.url}/asks`, order);
+  ask(order:Order): Observable<any> {
+    return this.http.post<any>(`${this.url}/asks`, order);
   }
 
-  deleteExposure(id:number, exposure:any): Observable<void> {
-    return this.http.put<void>(`${this.url}/markets/${id}`, exposure);
+  deleteExposure(id:number, user:any): Observable<string> {
+    return this.http.put<string>(`${this.url}/markets/${id}`, user);
   }
 }

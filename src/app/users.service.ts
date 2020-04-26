@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
   url:string = 'http://localhost:3000'
-  user:string
-  pin:string
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookies: CookieService) { }
 
   createUser(user:string, pin:string): Observable<void> {
     return this.http.post<void>(`${this.url}/users`, { user, pin })
@@ -21,15 +20,19 @@ export class UsersService {
   }
 
   setCredentials(user:string, pin:string): void {
-    this.user = user;
-    this.pin = pin;
+    this.cookies.set('user', user, 0.1);
+    this.cookies.set('pin', pin, 0.1)
+  }
+
+  logOut(): void {
+    this.cookies.deleteAll();
   }
 
   getUser(): string {
-    return this.user;
+    return this.cookies.get('user');
   }
 
   getPin(): string {
-    return this.pin;
+    return this.cookies.get('pin');
   }
 }

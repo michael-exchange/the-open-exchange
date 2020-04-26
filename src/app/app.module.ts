@@ -12,6 +12,9 @@ import { CreateComponent } from './create/create.component';
 import { SignupComponent } from './signup/signup.component';
 import { SettlementComponent } from './settlement/settlement.component';
 
+import { CookieService } from 'ngx-cookie-service';
+import { UserComponent } from './user/user.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +23,8 @@ import { SettlementComponent } from './settlement/settlement.component';
     OrderComponent,
     CreateComponent,
     SignupComponent,
-    SettlementComponent
+    SettlementComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,7 @@ import { SettlementComponent } from './settlement/settlement.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

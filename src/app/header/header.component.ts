@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,16 @@ import { UsersService } from '../users.service';
 export class HeaderComponent implements OnInit {
   user:string;
 
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService, private router: Router) { }
 
   ngOnInit() {
     this.user = this.userService.getUser();
+    if (!this.user) this.router.navigateByUrl('/');
+  }
+
+  logOut() {
+    this.userService.logOut();
+    location.reload();
   }
 
 }
