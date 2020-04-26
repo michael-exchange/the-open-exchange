@@ -9,14 +9,14 @@
     <li *ngIf="user">
       <a class="nav-link active" routerLink="/users/{{user}}">{{user}}'s Profile</a>
     </li>
-    <li class="nav-item">
+    <li *ngIf="user" class="nav-item">
       <a class="nav-link active" routerLink="/markets">View Markets</a>
     </li>
-    <li class="nav-item">
+    <li *ngIf="user" class="nav-item">
       <a class="nav-link active" routerLink="/create">Create Market</a>
     </li>
     <li *ngIf="user">
-      <a class="nav-link active" routerLink="/" (click)="logOut()">Sign Out</a>
+      <a class="nav-link active" (click)="logOut()" href="#">Sign Out</a>
     </li>
   </ul>
 </nav>

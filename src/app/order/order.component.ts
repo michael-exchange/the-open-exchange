@@ -46,6 +46,8 @@ export class OrderComponent implements OnInit {
       if ((typeof result) == 'string') this.message = result;
       else {
         this.message = '';
+        this.order.price = null;
+        this.order.volume = null;
         this.getMarketData(this.order.security);
       }
     })
@@ -54,6 +56,8 @@ export class OrderComponent implements OnInit {
         if ((typeof result) == 'string') this.message = result;
         else {
           this.message = '';
+          this.order.price = null;
+          this.order.volume = null;
           this.getMarketData(this.order.security);
         }
       })
@@ -61,7 +65,6 @@ export class OrderComponent implements OnInit {
   }
 
   deleteExposure(): void {
-    console.log(this.order.security);
     this.market.deleteExposure(this.order.security, { user: this.order.user, pin: this.order.pin })
       .subscribe(result => {
         this.message = result;

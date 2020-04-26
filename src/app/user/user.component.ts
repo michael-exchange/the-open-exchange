@@ -12,7 +12,10 @@ export class UserComponent implements OnInit {
   constructor(private userService: UsersService) { }
 
   ngOnInit() {
-    this.userService.getUserInfo().subscribe(result => this.user = result);
+    this.userService.getUserInfo().subscribe(result => {
+      this.user = result;
+      if (this.user.list_of_positions.length == 0) this.user.list_of_positions.push('No outstanding positions');
+    });
   }
 
 }
