@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  newMarket: Market = new Market;
+  newMarket:any = {
+    name: '',
+    description: '',
+    end: ''
+  };
 
   constructor(private market:MarketsService, private router:Router) { }
 
