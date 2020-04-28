@@ -6,7 +6,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --max_old_space_size=4096",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
