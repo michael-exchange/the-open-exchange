@@ -7,7 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class UsersService {
-  url:string = 'http://localhost:3000'
+  url:string = 'http://3.22.187.30'
 
   constructor(private http: HttpClient, private cookies: CookieService) { }
 
